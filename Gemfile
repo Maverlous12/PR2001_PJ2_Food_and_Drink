@@ -22,8 +22,9 @@ gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
 # gem "bcrypt", "~> 3.1.7"
 # gem 'attach'
-gem 'carrierwave'
+gem "aws-sdk-s3", require: false
 gem 'pry'
+gem 'devise'
 # Use Active Storage variant
 # gem "image_processing", "~> 1.2"
 
