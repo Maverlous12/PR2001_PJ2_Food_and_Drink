@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_121048) do
+ActiveRecord::Schema.define(version: 2020_09_15_150914) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_121048) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "user_id", null: false
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,13 +63,10 @@ ActiveRecord::Schema.define(version: 2020_09_03_121048) do
 
   create_table "toppings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.integer "type"
     t.integer "price"
-    t.integer "product_id", null: false
-    t.index ["product_id"], name: "index_toppings_on_product_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.date "birth"
     t.string "gender"
@@ -80,6 +77,8 @@ ActiveRecord::Schema.define(version: 2020_09_03_121048) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -88,5 +87,4 @@ ActiveRecord::Schema.define(version: 2020_09_03_121048) do
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
   add_foreign_key "products", "categories"
-  add_foreign_key "toppings", "products"
 end

@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   root 'homepages#home'
   namespace :admin do
     get 'home', to: 'homepages#index'
+    get '', to: 'sessions#new'
+    post '', to: 'sessions#create'
     resources :categories do 
       resources :products
     end
     resources :products, only: [:index]
     resources :toppings
+
   end
 
 
